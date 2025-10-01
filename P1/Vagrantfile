@@ -4,10 +4,10 @@
 Vagrant.configure("2") do |config|
   #Server machine
   config.vm.define "hcharefs" do |sconfig|
-    sconfig.vm.box = "generic/debian12"
+    sconfig.vm.box = "ubuntu/focal64"
 #configure memory and cpu
     sconfig.vm.provider "virtualbox" do |v|
-      v.memory = 1024
+      v.memory = 2048
       v.cpus = 2
     end
     sconfig.vm.hostname = "hcharefS"
@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
   end
   #Client machine
   config.vm.define "hcharefsw" do |cconfig|
-    cconfig.vm.box = "generic/debian12"
+    cconfig.vm.box = "ubuntu/focal64"
     cconfig.vm.provider "virtualbox" do |v|
       v.memory = 512
       v.cpus = 1
