@@ -12,14 +12,7 @@ Vagrant.configure("2") do |config|
     end
     sconfig.vm.hostname = "hcharefS"
     sconfig.vm.network "private_network", ip: "192.168.56.110"
-    sconfig.vm.provision "shell", inline:  <<-SHELL
-      sudo apt-get update
-      sudo apt-get upgrade -y
-      sudo apt-get install -y curl
-      #install k3s server
-      curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 
-      #find the token and put it in the shared folder so we can access to it from the worker machine 
-      cat /var/lib/rancher/k3s/server/node-token > /vagrant/token.txt
+    sconfig.vm.provision "shell", path: "scripts/Server.sh"
 
     SHELL
     
@@ -33,14 +26,7 @@ Vagrant.configure("2") do |config|
     end
     cconfig.vm.hostname = "hcharefSW"
     cconfig.vm.network "private_network", ip: "192.168.56.111"
-    cconfig.vm.provision "shell", inline: <<-SHELL
-      sudo apt-get update
-      sudo apt-get upgrade -y
-      sudo apt-get install -y curl
-      sleep 5
-      curl -sfL https://get.k3s.io | K3S_URL=https://192.168.56.110:6443 K3S_TOKEN=\$(cat /vagrant/token.txt) sh -
-      #install k3s agent after getting server's token
-    SHELL
+    sconfig.vm.provision "shell", path: "scripts/Client.sh"
 
   end
 

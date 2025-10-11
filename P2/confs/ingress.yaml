@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+    # IPs in host are not allowed
+    #https://datatracker.ietf.org/doc/html/rfc6762 page 5
+    - host: app1.local
+      http:
+        paths:
+          - path: /app1
+            pathType: Prefix
+            backend:
+              service:
+                # service name, not deployment name
+                name: app1-service
+                port:
+                  # An Ingress does not expose arbitrary ports or protocols.
+                  # Exposing services other than HTTP and HTTPS typically uses a service of type (expose here port server)(k8s documentation)
+                  number: 8080
+
+    - host: app2.local
+      http:
+        paths:
+          - path: /app2
+            pathType: Prefix
+            backend:
+              service:
+                name: app2-service
+                port:
+                  number: 8080
+
+    - host: app3.local
+      http:
+        paths:
+          - path: /app3
+            pathType: Prefix
+            backend:
+              service:
+                name: app3-service
+                port:
+                  number: 8080
