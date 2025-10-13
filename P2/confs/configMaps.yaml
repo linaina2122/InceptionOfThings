@@ -16,7 +16,7 @@ kind: ConfigMap
 metadata:
   name: app1-html
 data:
-  app1.html: |
+  index.html: |
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -53,7 +53,7 @@ kind: ConfigMap
 metadata:
   name: app2-html
 data:
-  app2.html: |
+  index.html: |
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -90,7 +90,7 @@ kind: ConfigMap
 metadata:
   name: app3-html
 data:
-  app3.html: |
+  index.html: |
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -103,13 +103,13 @@ data:
                 background-image: url('https://media.istockphoto.com/id/1061642336/vector/panda-vector-print-baby-shower-card.jpg?s=2048x2048&w=is&k=20&c=JXD2oKsoSMFJcTr7yi11zMD_wv3SLSqpyDBPhhsw4kc=');
                 background-size: cover;
                 background-position: center;
-                background-repeat: no-repeat; 
+                background-repeat: no-repeat;
             }
 
             p {
                 color: blueviolet;
                 padding: 20px;
-                background: rgba(255, 255, 255, 0.6); 
+                background: rgba(255, 255, 255, 0.6);
                 display: inline-block;
                 border-radius: 8px;
             }
@@ -119,3 +119,5 @@ data:
         <p>Hello From App 3</p>
     </body>
     </html>
+
+

@@ -31,14 +31,12 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:stable-perl
+          image: nginx:stable
           # tell Kubernetes to do that connection
           volumeMounts:
-            - name: app1-volume
+            - name: app3-volume
               # where the volume is mounted
-              mountPath: /usr/share/nginx/html/app3.html
-              # subPath allows to access directly to the wanted folder or file
-              subPath: app3.html
+              mountPath: /usr/share/nginx/html
           ports:
             - containerPort: 80 
       volumes:
@@ -60,4 +58,6 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30042
+  type: NodePort
+

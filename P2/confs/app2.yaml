@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: nginx:stable-perl
+          image: nginx:stable
           # tell Kubernetes to do that connection
           volumeMounts:
             - name: app2-volume
@@ -62,4 +62,6 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30041
+  type: NodePort
+
